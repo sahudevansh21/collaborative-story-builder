@@ -1,0 +1,234 @@
+:root {
+  --bg-dark: #0a0a0f;
+  --text-light: #e0e0e0;
+  --text-secondary: #a0a0a0;
+  --accent-purple: #8a2be2;
+  --accent-blue: #00bcd4;
+  --accent-gradient: linear-gradient(45deg, #6d28d9, #4a00e0, #8a2be2, #00bcd4); /* Purple to Cyan */
+  --glass-bg-color: rgba(255, 255, 255, 0.08);
+  --glass-border-color: rgba(255, 255, 255, 0.15);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  --glass-hover-scale: 1.02;
+  --card-padding: 2rem;
+  --border-radius-lg: 1rem;
+  --transition-speed: 0.3s;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--bg-dark);
+  color: var(--text-light);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-light);
+  margin-top: 0;
+}
+
+p {
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+a {
+  color: var(--accent-blue);
+  text-decoration: none;
+  transition: color var(--transition-speed) ease;
+}
+
+a:hover {
+  color: var(--accent-purple);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.glass-card {
+  background: var(--glass-bg-color);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: var(--border-radius-lg);
+  border: 1px solid var(--glass-border-color);
+  box-shadow: var(--glass-shadow);
+  padding: var(--card-padding);
+  transition: transform var(--transition-speed) ease-in-out, box-shadow var(--transition-speed) ease-in-out;
+}
+
+.glass-card:hover {
+  transform: translateY(-5px) scale(var(--glass-hover-scale));
+  box-shadow: 0 12px 48px 0 rgba(0, 0, 0, 0.45);
+}
+
+.glass-input, .glass-textarea, .glass-select {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-light);
+  padding: 0.8rem 1rem;
+  border-radius: 0.5rem;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color var(--transition-speed) ease, background var(--transition-speed) ease;
+}
+
+.glass-input:focus, .glass-textarea:focus, .glass-select:focus {
+  outline: none;
+  border-color: var(--accent-blue);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.glass-button {
+  background: var(--accent-gradient);
+  border: none;
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.glass-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Navbar styles */
+.navbar {
+  background: var(--glass-bg-color);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--glass-border-color);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent; /* Fallback for browsers that don't support text-fill-color */
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-link {
+  color: var(--text-light);
+  font-weight: 500;
+  padding: 0.5rem 0;
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent-blue);
+  transition: width var(--transition-speed) ease;
+}
+
+.nav-link:hover::after, .nav-link.active::after {
+  width: 100%;
+}
+
+/* Flexbox/Grid for layout */
+.flex-group {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.grid-cols-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+/* Specific styles for Story Canvas */
+.canvas-container {
+  min-height: 600px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px dashed var(--glass-border-color);
+  border-radius: var(--border-radius-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+.story-element {
+  position: absolute;
+  min-width: 150px;
+  min-height: 80px;
+  background: var(--glass-bg-color);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 0.75rem;
+  border: 1px solid var(--glass-border-color);
+  box-shadow: var(--glass-shadow);
+  padding: 1rem;
+  cursor: grab;
+  transition: transform 0.1s ease-out, box-shadow var(--transition-speed) ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  word-wrap: break-word;
+  user-select: none;
+}
+
+.story-element:active {
+  cursor: grabbing;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+  z-index: 10;
+}
+
+.story-element h4 {
+  margin-bottom: 0.5rem;
+  color: var(--accent-blue);
+}
+
+.story-element p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .nav-links {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .container {
+    padding: 1rem;
+  }
+  .glass-card {
+    padding: 1.5rem;
+  }
+  .grid-cols-2 {
+    grid-template-columns: 1fr;
+  }
+}
